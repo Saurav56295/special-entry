@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Entry For You</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="decorations-container"></div>
+
+    <div class="wrapper" id="app-wrapper">
+        
+        <div class="progress-bar-container">
+            <div class="progress-line">
+                <div class="progress-fill" id="progress-fill-bar"></div>
+            </div>
+            <div class="steps-nodes">
+                <div class="step-node active" id="node-1"><span>1</span><p>Welcome</p></div>
+                <div class="step-node" id="node-2"><span>2</span><p>Questions</p></div>
+                <div class="step-node" id="node-3"><span>3</span><p>The Big One</p></div>
+                <div class="step-node" id="node-4"><span>4</span><p>Happy Ending</p></div>
+            </div>
+        </div>
+
+        <div class="quiz-container">
+            
+            <div id="step-1" class="card active">
+                <h2>Hey Beautiful! 💖</h2>
+                <p class="pickup-line">Are you a magician? Because whenever I look at you, everyone else disappears... ✨</p>
+                <p class="sub-heading">So...<br><strong>Do you want to enter into my heart? 💕</strong></p>
+                <div class="btn-group">
+                    <button class="primary-btn" onclick="goToStep(1, 2)">Yes, let me in! 😍</button>
+                    <button class="secondary-btn" onclick="alert('Wrong answer! You have no choice, try again! 😜')">No, I'm scared. 🏃‍♀️</button>
+                </div>
+            </div>
+
+            <div id="step-2" class="card">
+                <h2>Question 1 💌</h2>
+                <p class="question-text">If I could give you one thing in life, what do you think it would be? 🤔</p>
+                <div class="options-grid">
+                    <button onclick="checkAnswer('wrong', 'q1')">A giant box of chocolates 🍫</button>
+                    <button onclick="checkAnswer('wrong', 'q1')">The moon and the stars 🌙✨</button>
+                    <button onclick="checkAnswer('correct', 'q1', 2, 3)">The ability to see yourself through my eyes... Everything! ❤️</button>
+                    <button onclick="checkAnswer('wrong', 'q1')">An endless bouquet of roses 🌹</button>
+                </div>
+                <p id="error-q1" class="error-text"></p>
+            </div>
+
+            <div id="step-3" class="card">
+                <h2>Question 2 💌</h2>
+                <p class="question-text">What do you think is my favorite thing about you? 🥰</p>
+                <div class="options-grid">
+                    <button onclick="checkAnswer('wrong', 'q2')">Your cute smile 😁</button>
+                    <button onclick="checkAnswer('wrong', 'q2')">Your beautiful eyes 👀</button>
+                    <button onclick="checkAnswer('wrong', 'q2')">Your kind heart 💖</button>
+                    <button onclick="checkAnswer('correct', 'q2', 3, 4)">All of the above! ✨</button>
+                </div>
+                <p id="error-q2" class="error-text"></p>
+            </div>
+
+            <div id="step-4" class="card">
+                <h2>The Ultimate Question 💍</h2>
+                <p class="sub-heading">After all these questions, I hope you know the answer...</p>
+                <h3 class="proposal-title">Will you be my girlfriend? 💕</h3>
+                <div class="proposal-buttons">
+                    <button id="yes-btn" onclick="showCongratulations()">Yes! 💖</button>
+                    <button id="no-btn" onmouseover="runAwayButton()">No 😢 <br><small>(It won't work 😂)</small></button>
+                </div>
+                <p class="hint-arrow">👉 Try to catch me! 😜</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="congratulations-screen" class="congrats-page">
+        <div class="congrats-overlay-card">
+            <h1>Congratulations! 🎉👑</h1>
+            <div class="divider">🌹✨🌹</div>
+            <p class="main-congrats-text">You officially have the best boyfriend in the entire world! 🌍💖</p>
+            <p class="pickup-line-congrats">"They say nothing lasts forever... so will you be my nothing?" 😉❤️</p>
+            <p class="promise-text">I promise to love you, respect you, care for you, and stand by you forever and always. 💞✨</p>
+            <h2>Welcome to our forever... 💌</h2>
+            <button class="love-btn" onclick="alert('I Love You More! ❤️ Infinity & Beyond!')">I Love You Too ❤️</button>
+            <p class="tip-text">Tip: Click the screen for a magical surprise ✨</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

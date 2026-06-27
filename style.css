@@ -1,0 +1,354 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background: #0f051d;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #ff4d6d;
+    filter: blur(150px);
+    opacity: 0.2;
+    top: 20%;
+    left: 20%;
+}
+
+#decorations-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-item {
+    position: absolute;
+    top: -50px;
+    animation: falling linear infinite;
+}
+
+@keyframes falling {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.6; }
+    100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 10;
+}
+
+/* PROGRESS BAR STYLING */
+.progress-bar-container {
+    position: relative;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.progress-line {
+    position: absolute;
+    top: 15px;
+    left: 40px;
+    right: 40px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff4d6d, #ff758f);
+    box-shadow: 0 0 10px #ff4d6d;
+    transition: width 0.4s ease;
+}
+
+.steps-nodes {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.step-node {
+    text-align: center;
+}
+
+.step-node span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #1a0b2e;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.step-node p {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.step-node.active span {
+    background: #ff4d6d;
+    border-color: #ff758f;
+    color: white;
+    box-shadow: 0 0 15px #ff4d6d;
+}
+
+.step-node.active p {
+    color: #ff758f;
+    text-shadow: 0 0 5px rgba(255, 117, 143, 0.5);
+}
+
+/* CARDS DESIGN */
+.quiz-container {
+    width: 100%;
+}
+
+.card {
+    background: rgba(26, 11, 46, 0.8);
+    border: 1.5px solid rgba(255, 117, 143, 0.25);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.card.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #e0d5ed;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.pickup-line {
+    font-style: italic;
+    color: #ff758f;
+    font-size: 1.15rem;
+}
+
+/* OPTIONS GRID - FIX: ALL BUTTONS ARE NOW EXACTLY UNIFORM */
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.options-grid button {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e0d5ed;
+    padding: 14px 20px;
+    border-radius: 15px;
+    text-align: left;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.options-grid button:hover {
+    background: rgba(255, 77, 109, 0.1);
+    border-color: #ff4d6d;
+    transform: translateX(3px);
+}
+
+.error-text {
+    color: #ff758f;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+/* STEP 4 PROPOSAL INTERACTION */
+.proposal-title {
+    color: #ff4d6d;
+    font-size: 2rem;
+    margin: 15px 0 25px 0;
+    text-shadow: 0 0 15px rgba(255, 77, 109, 0.4);
+}
+
+.proposal-buttons {
+    position: relative;
+    height: 70px;
+    width: 100%;
+}
+
+#yes-btn {
+    position: absolute;
+    left: 0;
+    width: 48%;
+    background: linear-gradient(90deg, #ff4d6d, #ff758f);
+    color: white;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+}
+
+#no-btn {
+    position: absolute;
+    right: 0;
+    width: 48%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 8px;
+    font-size: 0.95rem;
+    border-radius: 30px;
+}
+
+.hint-arrow {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.85rem;
+    margin-top: 15px;
+}
+
+/* ======================================================== */
+/* IMPRESSIVE POPPING CONGRATULATIONS PAGE WITH BACKGROUND  */
+/* ======================================================== */
+.congrats-page {
+    display: none; /* Triggered by JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    background: url('1000058003.png') no-repeat center bottom;
+    background-size: cover;
+    justify-content: center;
+    align-items: center; /* Center aligns card perfectly on screen */
+    padding: 20px;
+}
+
+/* Popping Center Overlay Card */
+.congrats-overlay-card {
+    background: rgba(15, 5, 29, 0.8);
+    border: 2px solid rgba(255, 77, 109, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 35px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 77, 109, 0.2);
+    text-align: center;
+    
+    /* Popping scale-up transition animation */
+    animation: popOut 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popOut {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.congrats-overlay-card h1 {
+    color: #ff4d6d;
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px rgba(255, 77, 109, 0.4);
+}
+
+.divider {
+    color: #ff758f;
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.main-congrats-text {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.pickup-line-congrats {
+    font-style: italic;
+    color: #ff758f;
+    font-size: 1.1rem;
+    background: rgba(255, 77, 109, 0.1);
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 3px solid #ff4d6d;
+}
+
+.promise-text {
+    color: #d1c1e0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.congrats-overlay-card h2 {
+    color: white;
+    font-size: 1.3rem;
+    margin-top: 15px;
+}
+
+.love-btn {
+    background: linear-gradient(90deg, #ff4d6d, #ff758f);
+    color: white;
+    width: 100%;
+    padding: 14px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+}
+
+.love-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
+}
+
+.tip-text {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 15px;
+    margin-bottom: 0;
+}
